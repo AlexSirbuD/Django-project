@@ -1,0 +1,76 @@
+{% extends 'staff/base.html' %}
+
+{% block content %}
+
+{% for post in posts %}
+
+<div class="post-name">{{ post.title }}</div>
+
+
+{% if post.photo %}
+<p><img class="img-article-left" src="{{post.photo.url}}"></p>
+{% endif %}
+
+
+
+
+<p class="cont2">DESCRIPTION: <br>{{ post.content }}</p>
+<p class="brand">BRAND: <br>{{ post.brand }}</p>
+<p class="size">SIZE: <br>{{ post.size }}</p>
+<p class="price-post">PRICE: <br>{{ post.price }}</p>
+
+
+{% if request.user.is_authenticated %}
+
+{% if user.id == post.user.id %}
+
+<p class="edit-post"><a href="{% url 'update_post' post.slug %}">EDIT</a></p>
+<p class="delete-post"><a href="{% url 'delete_post' post.slug %}">DELETE</a></p>
+{% endif %}
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="line_between"></div>
+{% endif %}
+{% endfor %}
+
+<div class="content-text"></div>
+{% if page_obj.has_other_pages %}
+<nav class="list-pages">
+    <ul>
+{% if page_obj.has_previous %}
+<li class="page-num">
+	<a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+</li>
+{% endif %}
+
+
+
+        {% for p in paginator.page_range %}
+		{% if page_obj.number == p %}
+        <li class="page-num page-num-selected">{{ p }}</li>
+		{% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+        <li class="page-num">
+            <a href="?page={{ p }}">{{ p }}</a>
+        </li>
+		{% endif %}
+        {% endfor %}
+
+{% if page_obj.has_next %}
+<li class="page-num">
+    <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+</li>
+{% endif %}
+
+    </ul>
+</nav>
+{% endif %}
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+

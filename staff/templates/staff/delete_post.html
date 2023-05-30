@@ -1,0 +1,26 @@
+{% extends 'staff/base.html' %}
+
+{% block content %}
+<h3>DELETE: {{post.title}}</h3>
+<br><br>
+
+<div class="lo-re">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    
+        <div class="form-error">{{ form.non_field_errors }}</div>
+    
+    {% for f in form %}
+    <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+    <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+        <strong>Are you sure you want to delete?</strong><br><br> 
+        <button type="submit" value="confirm">DELETE</button>
+
+        <button onclick="window.history.back();" class="btn btn-default" type="button">CANCEL</button>
+
+    </form>
+</div>
+
+{% endblock %}
+

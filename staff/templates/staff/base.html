@@ -1,0 +1,74 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{post.title}}</title>
+    {% bootstrap_css %}
+	<link type="text/css" href="{% static 'staff/css/style.css' %}" rel="stylesheet" />
+    {% bootstrap_javascript jquery='slim' %}
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="shortcut icon" href="{% static 'staff/images/logo.ico' %}" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+</head>
+
+<body>
+    
+        
+    
+{% block header %}
+<header class="header">
+    
+            <div class="box_up"></div>
+            <ul class="menu">
+                    <li class="menu-item">
+                        <a class="logo" href="{% url 'home' %}">
+                            <img class="logo-img" src="{% static 'staff/images/logo.png' %}" alt="logo">
+                        </a>
+                    </li>
+
+                    <li id="links" class="links">
+                    {% for m in menu %}
+                        <a class="menu-link" href="{% url m.url_name %}">{{m.title}}</a>
+                    {% endfor %}
+                    </li>
+
+                    <li class="Users">
+                    {% if request.user.is_authenticated %}
+                    
+                        <li class="menu-in-out"><a href="{% url 'my_posts' user.username %}">{{user.username}}</a>  | <a href="{% url 'logout' %}">LOGOUT</a></li>
+                    {% else %}
+                        <li class="menu-lo-re"><a href="{% url 'register' %}">REGISTRATION</a> | <a href="{% url 'login' %}">LOGIN</a></li>
+                    
+                    {% endif %}
+                    </li>
+                    
+                    <div class="line_up"></div>                  
+                </li>
+            </ul>
+            
+            
+
+
+
+</header>
+{% endblock header %}
+
+
+{% block content %}
+{% endblock %}
+
+
+
+
+<br><br><br><br>
+<div class="footer">
+	
+		<p> Copyright &copy; 2010 by goodbee.com. All rights reserved.</p>
+	
+</div>
+</body>
+</html>
