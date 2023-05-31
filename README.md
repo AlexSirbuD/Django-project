@@ -23,7 +23,7 @@ This is a small project where you can create, delete and update posts.
 
 By clicking on the link, you can find a quick video with the launch of this application.
 
-https://reccloud.com/u/u6pv1ad
+https://www.veed.io/view/5d2ea51d-d7e9-43df-a7d8-36d754a4e76d?sharingWidget=true&panel=share
 
 
 ----------------------------------------------------------------------------------------
